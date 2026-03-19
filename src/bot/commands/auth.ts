@@ -10,7 +10,7 @@ export function createAuthHandlers(config: Config, mcpPool: McpProcessPool) {
 	async function authCommand(ctx: BotContext): Promise<void> {
 		if (ctx.userSession?.fibxAddr) {
 			await ctx.reply(
-				`You're already connected as \`${truncateAddress(ctx.userSession.fibxAddr)}\`\n\n` +
+				`You're already logged in as \`${truncateAddress(ctx.userSession.fibxAddr)}\`\n\n` +
 					"Want to re-authenticate?",
 				{
 					parse_mode: "Markdown",

@@ -46,7 +46,7 @@ pnpm dev
 | ------------ | ----------------------------------------- |
 | `/start`     | Welcome message                           |
 | `/setup`     | Configure AI provider, model, and API key |
-| `/auth`      | Connect FibX wallet via email OTP         |
+| `/auth`      | Log in to FibX account via email OTP      |
 | `/model`     | Switch AI model within current provider   |
 | `/status`    | View current session and configuration    |
 | `/clear`     | Reset chat history                        |

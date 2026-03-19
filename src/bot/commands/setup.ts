@@ -103,12 +103,12 @@ export function createSetupHandlers(config: Config) {
 			"*Setup Complete*\n\n" +
 				`Provider: *${PROVIDER_LABELS[provider]}*\n` +
 				`Model: \`${model?.label ?? modelId}\`\n\n` +
-				"Next step: Use /auth to connect your fibx wallet.\n" +
+				"Next step: Use /auth to log in to your FibX account.\n" +
 				'Or just start chatting — try _"What can you do?"_',
 			{
 				parse_mode: "Markdown",
 				...Markup.inlineKeyboard([
-					Markup.button.callback("Connect Wallet", "auth"),
+					Markup.button.callback("Log In to FibX", "auth"),
 				]),
 			}
 		);

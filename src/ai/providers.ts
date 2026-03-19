@@ -16,5 +16,9 @@ export function createModel(provider: Provider, apiKey: string, modelName: strin
 			return createAnthropic({ apiKey })(modelName);
 		case "gemini":
 			return createGoogleGenerativeAI({ apiKey })(modelName);
+		default: {
+			const _exhaustive: never = provider;
+			throw new Error(`Unknown provider: ${_exhaustive}`);
+		}
 	}
 }

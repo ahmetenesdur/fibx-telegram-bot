@@ -18,5 +18,7 @@ export default defineConfig({
 		"@ai-sdk/google",
 		"@modelcontextprotocol/sdk",
 		"better-sqlite3",
+		"zod",
+		"env-paths",
 	],
 });

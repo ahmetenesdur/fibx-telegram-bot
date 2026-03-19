@@ -11,7 +11,7 @@ export function createStatusCommand(mcpPool: McpProcessPool) {
 			await ctx.reply(
 				"*Status*\n\n" +
 					"AI Model: Not configured\n" +
-					"Wallet: Not connected\n\n" +
+					"Account: Not logged in\n\n" +
 					"Use /setup to get started.",
 				{ parse_mode: "Markdown" }
 			);
@@ -20,7 +20,7 @@ export function createStatusCommand(mcpPool: McpProcessPool) {
 
 		const walletLine = session.fibxAddr
 			? `\`${truncateAddress(session.fibxAddr)}\``
-			: "Not connected (/auth)";
+			: "Not logged in (/auth)";
 
 		const modelLabel =
 			(session.provider && session.model
@@ -31,7 +31,7 @@ export function createStatusCommand(mcpPool: McpProcessPool) {
 			"*Status*\n\n" +
 				`Provider: *${session.provider ? PROVIDER_LABELS[session.provider] : "Not configured"}*\n` +
 				`Model: \`${modelLabel}\`\n` +
-				`Wallet: ${walletLine}\n` +
+				`Account: ${walletLine}\n` +
 				`History: ${session.history?.length ?? 0} messages\n` +
 				`Active MCP: ${mcpPool.size} processes`,
 			{ parse_mode: "Markdown" }

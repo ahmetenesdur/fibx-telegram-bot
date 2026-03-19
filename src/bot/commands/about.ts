@@ -5,7 +5,7 @@ export async function aboutCommand(ctx: BotContext): Promise<void> {
 	await ctx.reply(
 		"*About FibX*\n\n" +
 			"FibX is the AI-native DeFi toolkit for *EVM chains*, " +
-			"powered by the Fibrous.\n\n" +
+			"powered by Fibrous.\n\n" +
 			"*Supported chains:*\n" +
 			"• Base (ETH) — with Aave V3\n" +
 			"• Citrea (cBTC)\n" +

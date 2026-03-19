@@ -6,9 +6,9 @@ export async function helpCommand(ctx: BotContext): Promise<void> {
 		"*FibX Bot — Help*\n\n" +
 			"*Setup*\n" +
 			"• /setup — Choose your AI provider, model, and API key\n" +
-			"• /auth — Connect your fibx wallet\n" +
+			"• /auth — Log in to your FibX account\n" +
 			"• /model — Switch AI model or change provider\n" +
-			"• /status — View your current session (provider, model, wallet)\n\n" +
+			"• /status — View your current session (provider, model, account)\n\n" +
 			"*Session*\n" +
 			"• /clear — Reset conversation history\n" +
 			"• /deletekey — Remove your stored API key\n\n" +

@@ -14,6 +14,9 @@ export class SessionStore {
 	private stmtUpdateFibxAddr: Database.Statement;
 	private stmtUpdateHistory: Database.Statement;
 	private stmtDelete: Database.Statement;
+	private stmtGetAuthState: Database.Statement;
+	private stmtSetAuthState: Database.Statement;
+	private stmtDeleteAuthState: Database.Statement;
 
 	constructor(dbPath: string) {
 		this.db = new Database(dbPath);
@@ -65,6 +68,22 @@ export class SessionStore {
 			"UPDATE sessions SET history = ?, updated_at = unixepoch() WHERE user_id = ?"
 		);
 		this.stmtDelete = this.db.prepare("DELETE FROM sessions WHERE user_id = ?");
+
+		this.stmtGetAuthState = this.db.prepare(
+			"SELECT step, email, data FROM auth_states WHERE user_id = ?"
+		);
+		this.stmtSetAuthState = this.db.prepare(`
+			INSERT INTO auth_states (user_id, step, email, data)
+			VALUES (?, ?, ?, ?)
+			ON CONFLICT(user_id) DO UPDATE SET
+				step = excluded.step,
+				email = excluded.email,
+				data = excluded.data,
+				updated_at = unixepoch()
+		`);
+		this.stmtDeleteAuthState = this.db.prepare(
+			"DELETE FROM auth_states WHERE user_id = ?"
+		);
 
 		logger.info("Session store initialized", { dbPath });
 	}
@@ -127,30 +146,18 @@ export class SessionStore {
 	// ── Auth state management ──
 
 	getAuthState(userId: string): { step: string; email?: string; data?: string } | null {
-		const row = this.db
-			.prepare("SELECT step, email, data FROM auth_states WHERE user_id = ?")
-			.get(userId) as Record<string, unknown> | undefined;
+		const row = this.stmtGetAuthState.get(userId) as Record<string, unknown> | undefined;
 		return row
 			? { step: row.step as string, email: row.email as string, data: row.data as string }
 			: null;
 	}
 
 	setAuthState(userId: string, step: string, email?: string, data?: string): void {
-		this.db
-			.prepare(
-				`INSERT INTO auth_states (user_id, step, email, data)
-				 VALUES (?, ?, ?, ?)
-				 ON CONFLICT(user_id) DO UPDATE SET
-					step = excluded.step,
-					email = excluded.email,
-					data = excluded.data,
-					updated_at = unixepoch()`
-			)
-			.run(userId, step, email ?? null, data ?? null);
+		this.stmtSetAuthState.run(userId, step, email ?? null, data ?? null);
 	}
 
 	deleteAuthState(userId: string): void {
-		this.db.prepare("DELETE FROM auth_states WHERE user_id = ?").run(userId);
+		this.stmtDeleteAuthState.run(userId);
 	}
 
 	close(): void {
