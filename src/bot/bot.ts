@@ -59,16 +59,19 @@ export function createBot(
 		const authState = ctx.store.getAuthState(userId);
 
 		if (authState?.step === "setup:api_key") {
+			await ctx.sendChatAction("typing");
 			await setupHandlers.handleApiKey(ctx, text);
 			return;
 		}
 
 		if (authState?.step === "auth:email") {
+			await ctx.sendChatAction("typing");
 			await authHandlers.handleEmail(ctx, text);
 			return;
 		}
 
 		if (authState?.step === "auth:otp") {
+			await ctx.sendChatAction("typing");
 			await authHandlers.handleOtp(ctx, text);
 			return;
 		}
