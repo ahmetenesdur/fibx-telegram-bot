@@ -4,6 +4,7 @@ AI-powered Telegram bot for [FibX](https://github.com/ahmetenesdur/fibx) DeFi on
 
 ## Features
 
+- **Quote** — Price quotes without login — check rates instantly
 - **Swap** — DEX-aggregated trading via Fibrous with optimal routing
 - **Transfer** — Send native tokens and ERC-20s across supported chains
 - **Lend** — Supply, borrow, repay, withdraw on Aave V3 (Base)
@@ -15,11 +16,11 @@ AI-powered Telegram bot for [FibX](https://github.com/ahmetenesdur/fibx) DeFi on
 
 ## Supported Models
 
-| Provider | Models                                      | Default       |
-| -------- | ------------------------------------------- | ------------- |
-| OpenAI   | GPT-5.4 Nano, GPT-5.4 Mini, GPT-5.4        | GPT-5.4 Mini  |
-| Claude   | Haiku 4.5, Sonnet 4.6, Opus 4.6             | Sonnet 4.6    |
-| Gemini   | 3.1 Flash-Lite, 3 Flash, 2.5 Flash, 2.5 Pro, 3.1 Pro | 2.5 Flash |
+| Provider | Models                                               | Default      |
+| -------- | ---------------------------------------------------- | ------------ |
+| OpenAI   | GPT-5.4 Nano, GPT-5.4 Mini, GPT-5.4                  | GPT-5.4 Mini |
+| Claude   | Haiku 4.5, Sonnet 4.6, Opus 4.6                      | Sonnet 4.6   |
+| Gemini   | 3.1 Flash-Lite, 3 Flash, 2.5 Flash, 2.5 Pro, 3.1 Pro | 2.5 Flash    |
 
 ## Quick Start
 
@@ -71,7 +72,7 @@ fibx-telegram-bot/
 ├── src/
 │   ├── ai/
 │   │   ├── agent.ts          # AI SDK agent with MCP tool binding
-│   │   └── system-prompt.ts  # System prompt with 12 behavioral rules
+│   │   └── system-prompt.ts  # System prompt with 13 behavioral rules
 │   ├── bot/
 │   │   ├── index.ts          # Telegraf bot setup
 │   │   ├── commands/         # Command handlers
